@@ -1,0 +1,28 @@
+name: Release
+env:
+  ReleaseTypeLatestStaging: 'Merge the latest "staging" branch code to "main" branch and release'
+  ReleaseTypeTag: 'Release by the Tag given'
+  ReleaseTypeCommit: 'Release by the Commit ID given'
+on:
+  workflow_dispatch:
+    inputs:
+      ReleaseType:
+        type: choice
+        description: Release Type
+        required: true
+        options: 
+          - $ReleaseTypeLatestStaging
+          - $ReleaseTypeTag
+          - $ReleaseTypeCommit
+        default: $ReleaseTypeLatestStaging
+jobs:
+  release_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log the Release Type Input
+        run: |
+          echo "Below is the input value"
+          echo ${{ github.event.inputs.ReleaseType }}
+          echo "Below is the env variable"
+          echo $ReleaseTypeTag
+      

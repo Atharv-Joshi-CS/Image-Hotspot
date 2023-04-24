@@ -1,0 +1,52 @@
+# This is a basic workflow to help you get started with Actions
+
+name: PR_Build
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: 
+      - development
+      - staging
+      - main
+  workflow_dispatch:
+    inputs:
+      SourceBranch:
+        description: PRSource
+      DestinationBranch:
+        description: PRDestination
+
+jobs:
+  pr_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Git configs from GitHub
+        run: |
+         git config --global user.name "sankartn"
+         git config --global user.email "sankaranandh.narendran@contentstack.com"
+         git config --global url."https://${{ secrets.PAT }}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          repository: contentstack-expert-services/marketplace-app-template
+          token: ${{ secrets.PAT }}
+          persist-credentials: false
+
+      - name: Merge Source Branch to Destination Branch
+        env:
+          SOURCE_BRANCH: ${{ github.event.inputs.SourceBranch || github.event.pull_request.head.ref }}
+          DESTINATION_BRANCH: ${{ github.event.inputs.DestinationBranch || github.event.pull_request.base.ref }}
+        run: |
+          git fetch --prune origin
+          echo $SOURCE_BRANCH
+          echo $DESTINATION_BRANCH
+          git checkout -b $SOURCE_BRANCH refs/remotes/origin/$SOURCE_BRANCH
+          git checkout -b $DESTINATION_BRANCH refs/remotes/origin/$DESTINATION_BRANCH
+          git config --global merge.conflictstyle diff3
+          git merge --allow-unrelated-histories $SOURCE_BRANCH
+
+      - name: Run Build
+        run: sh build.sh
+
+      - name: Check the to-deploy folder contents
+        run: ls to-deploy
