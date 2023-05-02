@@ -28,12 +28,6 @@
     "precommit": "npm run prettify && npm run lint:fix",
     "build": "npm run precommit && export CI=false && GENERATE_SOURCEMAP=false react-scripts build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",

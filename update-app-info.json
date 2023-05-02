@@ -43,6 +43,17 @@
                         "data_type": "json"
                     }
                 ]
+            }, 
+            {
+                "type": "cs.cm.stack.dashboard",
+                "meta": [
+                    {
+                        "signed": true,
+                        "path": "/asset-sidebar-widget", 
+                        "name": "Asset Sidebar Widget",
+                        "data_type": "json"
+                    }
+                ]
             },   
             {
                 "type": "cs.cm.stack.config",

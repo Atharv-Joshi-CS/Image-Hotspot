@@ -1,12 +1,12 @@
 const constants = require("../constants");
 
-const isEmpty = (val) =>
+export const isEmpty = (val) =>
   val === undefined ||
   val === null ||
   (typeof val === "object" && !Object.keys(val)?.length) ||
   (typeof val === "string" && !val.trim().length);
 
-const getResponseObject = (statusCode, query, body = {}) => {
+export const getResponseObject = (statusCode, query, body = {}) => {
   const res = {
     statusCode,
     headers: {
@@ -20,7 +20,8 @@ const getResponseObject = (statusCode, query, body = {}) => {
   return res;
 };
 
-module.exports = {
-  isEmpty,
-  getResponseObject,
-};
+export const isAllowedAssetType = (asset) => {
+  const allowedAssetTypes = ["image"]
+  const assetContentType = asset?.content_type || ""
+  return allowedAssetTypes.some((type) => assetContentType.includes(type))
+}

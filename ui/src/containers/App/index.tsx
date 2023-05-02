@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 /* Import our modules */
 import ErrorBoundary from "../../components/ErrorBoundary";
 import SidebarWidget from "../SidebarWidget";
+import AssetSidebarWidget from "../AssetSidebarWidget/AssetSidebarWidget";
 /* Import node module CSS */
 import "@contentstack/venus-components/build/main.css";
 /* Import our CSS */
@@ -22,7 +23,7 @@ const App: React.FC = function () {
               Keep only the paths that are required for your app and
               remove the remaining paths and their source code also. */}
           <Routes>
-            <Route path="/sidebar-widget" element={<SidebarWidget />} />
+            <Route path="/asset-sidebar-widget" element={<SidebarWidget />} />
           </Routes>
         </BrowserRouter>
       </ErrorBoundary>

@@ -1,0 +1,22 @@
+.asset-sidebar-widget {
+    margin: 20px;
+    .image-marker {
+      max-height: 500px;
+      max-width: 500px;
+      position: relative;
+      
+      img {
+        width: 100%;
+        height: 100%;
+      }
+  
+      .icon-wrapper {
+        display: inline-block;
+        position: absolute;
+      }
+    }
+  
+    .primaryButton {
+      margin-top: 250px;
+    }
+  }

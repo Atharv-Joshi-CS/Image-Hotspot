@@ -22,3 +22,13 @@ export interface TypeSDKData {
 export interface TypeEntryData {
   title: string; // This is just example. You can remove this field or add any fields as per your requirement from the Entry data of CMS
 }
+
+export interface TypeHotspot {
+  id: number;
+  x : number,
+  y : number,
+  content : {
+    title : string,
+    description : string
+  }
+}
