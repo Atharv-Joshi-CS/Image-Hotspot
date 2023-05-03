@@ -32,3 +32,16 @@ export interface TypeHotspot {
     description : string
   }
 }
+
+export interface TypeState {
+  config: {};
+  syncAsset: () => void;
+  extension_uid: string;
+  metadata: any[]; // Replace 'any' with the actual type of the metadata array
+  assetMetadataExist: boolean;
+  localMetadataUid: string;
+  location: {};
+  currentAsset: undefined | { [key: string]: any; };
+  isConfiguredState: boolean;
+  appSdkInitialized: boolean;
+}

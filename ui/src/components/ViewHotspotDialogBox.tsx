@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, FieldLabel, Icon, TextInput, Textarea } from '@contentstack/venus-components';
 import { TypeHotspot } from '../common/types';
-const ViewHotSpotDialogBox = function({setIsEdit, hotspotIndex, hotspots, setHotspots, setDescription, setTitle, setViewDetailsDialogVisible, setEnterDetailsDialogVisible,  data} : {setIsEdit : any, hotspotIndex : any, hotspots : any, setHotspots : any, setDescription : any, setTitle : any, setViewDetailsDialogVisible : any, setEnterDetailsDialogVisible : any, data : any}){
+const ViewHotSpotDialogBox = function({getValue, setIsEdit, hotspotIndex, hotspots, setHotspots, setDescription, setTitle, setViewDetailsDialogVisible, setEnterDetailsDialogVisible,  data} : {getValue : any, setIsEdit : any, hotspotIndex : any, hotspots : any, setHotspots : any, setDescription : any, setTitle : any, setViewDetailsDialogVisible : any, setEnterDetailsDialogVisible : any, data : any}){
 
   const handleExit = () => {
     setViewDetailsDialogVisible(false);
@@ -22,6 +22,7 @@ const ViewHotSpotDialogBox = function({setIsEdit, hotspotIndex, hotspots, setHot
     
     temp.splice(index, 1);
     setHotspots(temp);
+    getValue(hotspots);
     setViewDetailsDialogVisible(false)
   }
   

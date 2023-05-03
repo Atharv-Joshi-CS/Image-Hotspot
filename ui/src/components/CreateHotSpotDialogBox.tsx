@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TypeHotspot } from '../common/types';
 import { Button, FieldLabel, TextInput, Textarea } from '@contentstack/venus-components';
 
-const CreateHotSpotDialogBox = function({hotspotIndex, hotspots, isEdit, hotspotCoords, setEnterDetailsDialogVisible, setHotspots, globalTitle, globalDescription} : {hotspotIndex : number, hotspots : TypeHotspot[], isEdit : boolean, hotspotCoords : {x: number,y: number}, setEnterDetailsDialogVisible : React.Dispatch<React.SetStateAction<boolean>>, globalTitle : string, globalDescription : string,  setHotspots : React.Dispatch<React.SetStateAction<TypeHotspot[]>>}){
+const CreateHotSpotDialogBox = function({getValue, hotspotIndex, hotspots, isEdit, hotspotCoords, setEnterDetailsDialogVisible, setHotspots, globalTitle, globalDescription} : {getValue : any, hotspotIndex : number, hotspots : TypeHotspot[], isEdit : boolean, hotspotCoords : {x: number,y: number}, setEnterDetailsDialogVisible : React.Dispatch<React.SetStateAction<boolean>>, globalTitle : string, globalDescription : string,  setHotspots : React.Dispatch<React.SetStateAction<TypeHotspot[]>>}){
   const [title, setTitle] = useState(globalTitle);
   const [description, setDescription] = useState(globalDescription);
 
@@ -26,6 +26,7 @@ const CreateHotSpotDialogBox = function({hotspotIndex, hotspots, isEdit, hotspot
         },
       },
     ]);
+    getValue(hotspots);
     setEnterDetailsDialogVisible(false);
   }
 
@@ -36,6 +37,7 @@ const CreateHotSpotDialogBox = function({hotspotIndex, hotspots, isEdit, hotspot
     temp[index].content.title = title;
     temp[index].content.description = description;
     setHotspots(temp);
+    getValue(hotspots)
     setEnterDetailsDialogVisible(false);
   }
 
